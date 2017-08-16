@@ -2,9 +2,9 @@ require 'json'
 
 module Deepstream
   module Helpers
-    SCHEME = 'ws://'
+    SCHEME = 'ws://'.freeze
     DEFAULT_PORT = 6020
-    DEFAULT_PATH = 'deepstream'
+    DEFAULT_PATH = 'deepstream'.freeze
 
     def self.to_deepstream_type(value)
       case value
@@ -49,7 +49,7 @@ module Deepstream
     def self.url(url)
       url.tap do |url|
         url.prepend(SCHEME) unless url.start_with?(SCHEME)
-        url.concat(":#{DEFAULT_PORT}") unless url[/\:\d+/]
+        # url.concat(":#{DEFAULT_PORT}") unless url[/\:\d+/]
         url.concat("/#{DEFAULT_PATH}") unless url[/\/\w+$/]
       end
     end
